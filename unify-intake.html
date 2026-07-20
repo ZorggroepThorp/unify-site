@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intake — UNIFY · Deep Water</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1916; --sand: #f4f0e8; --warm-white: #faf9f6;
+    --deep: #2c4a52; --mid: #4a7c8a; --light: #a8c5cc;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Instrument Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 56px; background: rgba(250,249,246,0.9);
+    backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--deep); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .nav-link { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.55; text-decoration: none; transition: opacity 0.3s; }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.is-active { opacity: 1; color: var(--deep); }
+  .nav-back { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.5; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: opacity 0.3s; }
+  .nav-back:hover { opacity: 1; }
+  .nav-back::before { content: '←'; font-size: 1rem; }
+
+  .page-hero { min-height: 46vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 140px 0 44px; }
+  .page-hero-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(155deg, #1e3840 0%, #2c4a52 35%, #3d6a78 65%, #4a7c8a 100%); }
+  .page-hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 75% 35%, rgba(255,255,255,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(168,197,204,0.12) 0%, transparent 60%); }
+  .page-hero-content { position: relative; z-index: 1; max-width: 760px; padding: 0 56px; }
+  .page-eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--light); margin-bottom: 24px; }
+  .page-hero h1 { font-family: var(--serif); font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 300; line-height: 1.05; color: rgba(255,255,255,0.95); }
+  .page-hero h1 em { font-style: italic; color: var(--light); }
+  .page-hero-tagline { font-family: var(--serif); font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 300; font-style: italic; color: rgba(255,255,255,0.65); line-height: 1.6; margin-top: 24px; max-width: 520px; }
+
+  .intake-shell {
+    width: 100%; max-width: none;
+    margin: -24px auto 0; padding: 12px 56px 100px;
+    background: var(--warm-white);
+    border-radius: 36px 36px 0 0;
+    position: relative; z-index: 2;
+  }
+  form { max-width: 720px; margin: 0 auto; }
+
+  .form-section { margin-bottom: 56px; }
+  .form-section-label {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .form-section-intro {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--ink);
+    opacity: 0.58;
+    margin-bottom: 20px;
+    max-width: 620px;
+  }
+  .safety-section {
+    background: rgba(244,240,232,0.55);
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 24px;
+    border-radius: 20px;
+  }
+  .form-field-yesno {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .form-field-yesno:last-of-type { border-bottom: 0; }
+  .form-field-yesno label { margin-bottom: 0; }
+  .form-field-yesno .radio-row { margin-top: 0; }
+  .safety-section .form-field:last-child { margin-bottom: 0; }
+  .safety-section .form-field input,
+  .safety-section .form-field textarea {
+    background: var(--warm-white);
+  }
+  .form-field { margin-bottom: 22px; }
+  .form-field label {
+    display: block; font-size: 0.8rem; color: var(--ink); opacity: 0.75;
+    margin-bottom: 8px; line-height: 1.5;
+  }
+  .form-field .hint { font-size: 0.74rem; opacity: 0.5; font-weight: 400; display: block; margin-top: 2px; }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%; background: var(--sand); border: 1px solid rgba(0,0,0,0.1);
+    padding: 14px 16px; font-family: var(--sans); font-size: 0.9rem;
+    color: var(--ink); outline: none; transition: border-color 0.25s; appearance: none; -webkit-appearance: none;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--mid); }
+  .form-field textarea { min-height: 90px; resize: vertical; }
+
+  .radio-row { display: flex; gap: 24px; margin-top: 6px; }
+  .radio-option { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+  .radio-option input { width: auto; }
+
+  .branch { display: none; }
+  .branch.active { display: block; }
+
+  .consent-box {
+    background: var(--sand); padding: 24px; margin-top: 8px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .consent-box input { width: auto; margin-top: 4px; }
+  .consent-box label { font-size: 0.82rem; line-height: 1.6; opacity: 0.75; }
+
+  .form-submit {
+    width: 100%; padding: 16px; background: var(--deep); color: var(--warm-white);
+    font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: background 0.3s; margin-top: 12px;
+  }
+  .form-submit:hover { background: var(--mid); }
+  .form-disclaimer { font-size: 0.74rem; line-height: 1.65; color: var(--ink); opacity: 0.45; margin-top: 16px; }
+
+  footer {
+    padding: 48px 56px; background: var(--ink);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand { font-family: var(--serif); font-size: 0.95rem; font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .footer-copy { font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 700px) {
+    nav { padding: 20px 24px; }
+    .page-hero { padding: 120px 0 32px; }
+    .page-hero-content { padding: 0 32px; }
+    .intake-shell { margin-top: -24px !important; padding: 8px 32px 80px !important; border-radius: 28px 28px 0 0 !important; }
+    .safety-section { padding: 18px; }
+    .form-field-yesno { grid-template-columns: 1fr; gap: 8px; }
+    .radio-row { flex-direction: column; gap: 10px; }
+    footer { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="unify-homepage.html">UNIFY · Deep Water</a>
+  <div class="nav-links">
+    <a class="nav-link" href="unify-homepage.html">Home</a>
+    <a class="nav-link" href="unify-sessievoorwaarden.html">Sessievoorwaarden</a>
+    <a class="nav-link" href="unify-privacyverklaring.html">Privacyverklaring</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <p class="page-eyebrow">UNIFY · Deep Water · Voorbereiding</p>
+    <h1>Voor je <em>komt.</em></h1>
+    <p class="page-hero-tagline">Een paar vragen, zodat we je sessie kunnen afstemmen op wat jij nodig hebt. Dit vervangt niet het voorgesprek.</p>
+  </div>
+</section>
+
+<div class="intake-shell">
+  <form action="https://formspree.io/f/JOUW_INTAKE_FORMSPREE_ID" method="POST">
+
+    <div class="form-section">
+      <p class="form-section-label">Contactgegevens</p>
+      <div class="form-field">
+        <label for="naam">Naam</label>
+        <input type="text" id="naam" name="naam" required>
+      </div>
+      <div class="form-field">
+        <label for="email">E-mailadres</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="telefoon">Telefoonnummer <span class="hint">Voor het inplannen van de intake</span></label>
+        <input type="tel" id="telefoon" name="telefoon">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <p class="form-section-label">Waar sta je?</p>
+      <div class="form-field">
+        <label for="waarstaje">Kies de situatie die het best past</label>
+        <select id="waarstaje" name="waar_sta_je" required>
+          <option value="">Kies een optie</option>
+          <option value="psychedelisch">Na een psychedelische of ceremoniële ervaring</option>
+          <option value="burnout">Burn-out of chronische overprikkeling</option>
+          <option value="trauma">Trauma of dissociatie (met behandelaar)</option>
+          <option value="rouw">Rouw of levensovergang</option>
+          <option value="klinisch">Klinisch professional — voor mezelf</option>
+          <option value="zorg">Zorgprofessional — samenwerking verkennen</option>
+          <option value="anders">Anders</option>
+        </select>
+      </div>
+
+      <div class="branch" id="branch-psychedelisch">
+        <div class="form-field">
+          <label for="psy_ervaring">Welke ervaring was dit? <span class="hint">Middel, ceremonie of context — zoveel als je prettig vindt te delen</span></label>
+          <textarea id="psy_ervaring" name="psychedelisch_ervaring"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="psy_wanneer">Wanneer vond dit plaats?</label>
+          <input type="text" id="psy_wanneer" name="psychedelisch_wanneer" placeholder="bijv. 3 weken geleden">
+        </div>
+        <div class="form-field">
+          <label for="psy_begeleider">Werk je hierin samen met een begeleider of therapeut? Zo ja, met wie?</label>
+          <input type="text" id="psy_begeleider" name="psychedelisch_begeleider">
+        </div>
+        <div class="form-field">
+          <label for="psy_nu">Wat speelt er nu, in het kort?</label>
+          <textarea id="psy_nu" name="psychedelisch_nu"></textarea>
+        </div>
+      </div>
+
+      <div class="branch" id="branch-burnout">
+        <div class="form-field">
+          <label for="bo_duur">Hoe lang speelt dit al?</label>
+          <input type="text" id="bo_duur" name="burnout_duur">
+        </div>
+        <div class="form-field">
+          <label for="bo_begeleiding">Ben je hiervoor onder begeleiding? <span class="hint">Bedrijfsarts, coach, therapeut — laat weten wie</span></label>
+          <input type="text" id="bo_begeleiding" name="burnout_begeleiding">
+        </div>
+        <div class="form-field">
+          <label for="bo_merk">Wat merk je vooral?</label>
+          <textarea id="bo_merk" name="burnout_klachten" placeholder="uitputting, prikkelgevoeligheid, slaapproblemen, iets anders..."></textarea>
+        </div>
+      </div>
+
+      <div class="branch" id="branch-trauma">
+        <div class="form-field">
+          <label for="tr_behandelaar">Naam en contactgegevens van je behandelaar</label>
+          <input type="text" id="tr_behandelaar" name="trauma_behandelaar">
+        </div>
+        <div class="form-field">
+          <label for="tr_opdehoogte">Is je behandelaar op de hoogte van deze aanvraag?</label>
+          <div class="radio-row">
+            <label class="radio-option"><input type="radio" name="trauma_behandelaar_opdehoogte" value="ja"> Ja</label>
+            <label class="radio-option"><input type="radio" name="trauma_behandelaar_opdehoogte" value="nee"> Nee</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="tr_afstemmen">Wat mogen we, indien nodig, met je behandelaar afstemmen?</label>
+          <textarea id="tr_afstemmen" name="trauma_afstemmen"></textarea>
+        </div>
+      </div>
+
+      <div class="branch" id="branch-rouw">
+        <div class="form-field">
+          <label for="ro_waarover">Waar gaat dit over? <span class="hint">Verlies, scheiding, geboorte, een andere ingrijpende gebeurtenis</span></label>
+          <textarea id="ro_waarover" name="rouw_waarover"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="ro_recent">Hoe recent is dit?</label>
+          <input type="text" id="ro_recent" name="rouw_recent">
+        </div>
+      </div>
+
+      <div class="branch" id="branch-klinisch">
+        <div class="form-field">
+          <label for="kl_vakgebied">Wat is je vakgebied?</label>
+          <input type="text" id="kl_vakgebied" name="klinisch_vakgebied">
+        </div>
+        <div class="form-field">
+          <label for="kl_zoekt">Wat zoek je specifiek in een sessie?</label>
+          <textarea id="kl_zoekt" name="klinisch_zoekt"></textarea>
+        </div>
+      </div>
+
+      <div class="branch" id="branch-zorg">
+        <div class="form-field">
+          <label for="zg_organisatie">Organisatie / praktijk</label>
+          <input type="text" id="zg_organisatie" name="zorg_organisatie">
+        </div>
+        <div class="form-field">
+          <label for="zg_functie">Functie</label>
+          <input type="text" id="zg_functie" name="zorg_functie">
+        </div>
+        <div class="form-field">
+          <label for="zg_zoekt">Waar ben je naar op zoek in de samenwerking?</label>
+          <textarea id="zg_zoekt" name="zorg_zoekt"></textarea>
+        </div>
+      </div>
+
+      <div class="branch" id="branch-anders">
+        <div class="form-field">
+          <label for="an_vertel">Vertel wat je met ons wil delen</label>
+          <textarea id="an_vertel" name="anders_vertel"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section safety-section">
+      <p class="form-section-label">Voor je veiligheid.</p>
+      <p class="form-section-intro">Beantwoord deze korte veiligheidscheck zo eerlijk mogelijk. Zo kunnen we de sessie goed op jou afstemmen.</p>
+      <div class="form-field form-field-yesno">
+        <label>Ben je zwanger?</label>
+        <div class="radio-row">
+          <label class="radio-option"><input type="radio" name="zwanger" value="ja"> Ja</label>
+          <label class="radio-option"><input type="radio" name="zwanger" value="nee"> Nee</label>
+        </div>
+      </div>
+      <div class="form-field form-field-yesno">
+        <label>Heb je epilepsie?</label>
+        <div class="radio-row">
+          <label class="radio-option"><input type="radio" name="epilepsie" value="ja"> Ja</label>
+          <label class="radio-option"><input type="radio" name="epilepsie" value="nee"> Nee</label>
+        </div>
+      </div>
+      <div class="form-field form-field-yesno">
+        <label>Heb je hart- of vaatproblemen?</label>
+        <div class="radio-row">
+          <label class="radio-option"><input type="radio" name="hartvaat" value="ja"> Ja</label>
+          <label class="radio-option"><input type="radio" name="hartvaat" value="nee"> Nee</label>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="huid">Heb je huidaandoeningen? <span class="hint">Open wonden, ernstig eczeem, recente tatoeages e.d.</span></label>
+        <textarea id="huid" name="huidaandoeningen"></textarea>
+      </div>
+      <div class="form-field">
+        <label for="medicatie">Gebruik je medicatie die relevant kan zijn?</label>
+        <textarea id="medicatie" name="medicatie"></textarea>
+      </div>
+      <div class="form-field">
+        <label for="behandeling">Ben je op dit moment onder behandeling? <span class="hint">Therapeut, psychiater, huisarts — naam optioneel</span></label>
+        <input type="text" id="behandeling" name="onder_behandeling">
+      </div>
+      <div class="form-field">
+        <label for="overig">Is er iets anders dat we voor je veiligheid moeten weten?</label>
+        <textarea id="overig" name="overig_veiligheid"></textarea>
+      </div>
+    </div>
+
+    <div class="consent-box">
+      <input type="checkbox" id="toestemming" name="toestemming_gezondheidsgegevens" value="akkoord" required>
+      <label for="toestemming">Ik geef toestemming voor het verwerken van bovenstaande gezondheidsgegevens, uitsluitend met het doel een veilige en passende Hold-sessie te kunnen bieden. Zie de <a href="unify-privacyverklaring.html" style="color:var(--deep);">privacyverklaring</a> voor meer informatie.</label>
+    </div>
+
+    <button type="submit" class="form-submit">Versturen</button>
+    <p class="form-disclaimer">Je gegevens worden vertrouwelijk behandeld en niet gedeeld met derden, behalve waar nodig voor je veiligheid en met jouw toestemming. Je ontvangt na het intakegesprek een bevestiging van je sessie.</p>
+  </form>
+</div>
+
+<footer>
+  <span class="footer-brand">UNIFY · Deep Water</span>
+  <span class="footer-copy">© 2026 Daniëlle · UNIFY</span>
+</footer>
+
+<script>
+  const select = document.getElementById('waarstaje');
+  const branches = document.querySelectorAll('.branch');
+  select.addEventListener('change', function() {
+    branches.forEach(function(b) { b.classList.remove('active'); });
+    const target = document.getElementById('branch-' + this.value);
+    if (target) { target.classList.add('active'); }
+  });
+</script>
+
+</body>
+</html>

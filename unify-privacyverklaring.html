@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacyverklaring — UNIFY · Deep Water</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:        #1a1916;
+    --sand:       #f4f0e8;
+    --warm-white: #faf9f6;
+    --deep:       #2c4a52;
+    --mid:        #4a7c8a;
+    --light:      #a8c5cc;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans:  'Instrument Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap;
+    padding: 24px 56px;
+    background: rgba(250,249,246,0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1rem; font-weight: 300;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--deep); text-decoration: none;
+  }
+  .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .nav-link { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.55; text-decoration: none; transition: opacity 0.3s; }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.is-active { opacity: 1; color: var(--deep); }
+  .nav-link.is-home {
+    opacity: 1;
+    border: 1px solid rgba(44,74,82,0.35);
+    padding: 8px 14px;
+  }
+  .nav-back {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); opacity: 0.5; text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: opacity 0.3s;
+  }
+  .nav-back:hover { opacity: 1; }
+  .nav-back::before { content: '←'; font-size: 1rem; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    min-height: 46vh;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 140px 0 28px;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(155deg, #1e3840 0%, #2c4a52 35%, #3d6a78 65%, #4a7c8a 100%);
+  }
+  .page-hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 35%, rgba(255,255,255,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(168,197,204,0.12) 0%, transparent 60%);
+  }
+  .page-hero-content {
+    position: relative; z-index: 1; max-width: 760px;
+    padding: 0 56px;
+  }
+  .page-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--light); margin-bottom: 24px;
+  }
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 300; line-height: 1.05;
+    color: rgba(255,255,255,0.95);
+  }
+  .page-hero h1 em { font-style: italic; color: var(--light); }
+  .page-hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 300; font-style: italic;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6; margin-top: 24px; max-width: 520px;
+  }
+  .updated {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--light); opacity: 0.7; margin-top: 28px;
+  }
+  .page-home-link {
+    margin-top: 14px;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .page-home-link a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    padding-bottom: 2px;
+  }
+  .page-home-link a:hover {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.7);
+  }
+
+  /* ── CONTENT ── */
+  main {
+    width: 100%;
+    max-width: none;
+    margin: -44px auto 0;
+    padding: 12px 56px 100px;
+    background: var(--warm-white);
+    border-radius: 36px 36px 0 0;
+    position: relative;
+    z-index: 2;
+  }
+  .legal-block {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 12px 0 24px; border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .legal-block:first-child {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 0;
+    margin-top: -42px;
+  }
+  .legal-num { display: none; }
+  .legal-block h2 {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+    color: var(--deep); margin-bottom: 10px;
+  }
+  .legal-block p, .legal-block li {
+    font-size: 0.92rem; line-height: 1.85; color: var(--ink); opacity: 0.68; margin-bottom: 14px;
+  }
+  .legal-block ul { padding-left: 20px; margin-bottom: 14px; }
+  a { color: var(--deep); }
+  .note-box {
+    background: var(--sand); border-left: 3px solid var(--light);
+    padding: 20px 24px; margin: 20px 0 0;
+    font-size: 0.84rem; line-height: 1.75; opacity: 0.9;
+  }
+  .note-box strong { color: var(--deep); }
+
+  footer {
+    padding: 48px 56px; background: var(--ink);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand {
+    font-family: var(--serif); font-size: 0.95rem; font-weight: 300;
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.6);
+  }
+  .footer-copy { font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 700px) {
+    nav { padding: 20px 24px; }
+    .page-hero { padding: 120px 0 20px; }
+    .page-hero-content { padding: 0 32px; }
+    main {
+      margin-top: -44px;
+      padding: 8px 32px 80px;
+      border-radius: 28px 28px 0 0;
+      position: relative;
+      z-index: 2;
+    }
+    .legal-block { gap: 10px; padding: 8px 0 20px; }
+    .legal-num { font-size: 1.6rem; }
+    footer { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">UNIFY · Deep Water</a>
+  <div class="nav-links">
+    <a class="nav-link is-home" href="/">Home</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content" style="padding: 0 32px 0 32px;">
+    <p class="page-eyebrow">UNIFY · Deep Water</p>
+    <h1>Privacy&shy;<em>verklaring.</em></h1>
+    <p class="page-hero-tagline">Wat we verzamelen, waarom, en hoe je er grip op houdt.</p>
+    <p class="page-home-link"><a href="/">Terug naar home</a></p>
+  </div>
+</section>
+<main style="width: 100%; max-width: none; margin: -44px auto 0; padding: 0 32px 80px; background: #faf9f6; border-radius: 28px 28px 0 0; position: relative; z-index: 2;">
+  <div class="legal-block">
+    <div class="legal-num">01</div>
+    <div>
+      <h2>Wie we zijn</h2>
+      <p>Deze website wordt beheerd door Daniëlle, handelend onder UNIFY. Heb je vragen over deze privacyverklaring of over je gegevens? Neem contact op via <a href="mailto:hello@unify.nl">hello@unify.nl</a>.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">02</div>
+    <div>
+      <h2>Welke gegevens we verzamelen</h2>
+      <p>Op dit moment verzamelt deze website alleen gegevens die je zelf actief invult via het contactformulier op de Deep Water-pagina:</p>
+      <ul>
+        <li>Je naam</li>
+        <li>Je e-mailadres</li>
+        <li>De context die je selecteert (bijvoorbeeld: burn-out, na een intensieve ervaring, samenwerking als zorgprofessional)</li>
+        <li>Een eventueel bericht dat je toevoegt</li>
+      </ul>
+      <p>We verzamelen geen betaalgegevens, maken geen gebruikersaccounts aan en houden geen orderhistorie bij. Dat is op deze website niet van toepassing.</p>
+      <div class="note-box">
+        <strong>Cookies &amp; analytics.</strong> Deze website gebruikt op dit moment geen analytics- of trackingcookies (zoals Google Analytics of Meta Pixel), afgezien van technisch noodzakelijke cookies die WordPress standaard kan plaatsen. Mocht dat in de toekomst veranderen, dan wordt deze verklaring bijgewerkt vóórdat die wijziging ingaat.
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">03</div>
+    <div>
+      <h2>Waarom we deze gegevens verzamelen</h2>
+      <p>We gebruiken je gegevens uitsluitend om:</p>
+      <ul>
+        <li>Te reageren op je aanvraag voor een kennismakingsgesprek</li>
+        <li>Een Deep Water-sessie of intake met je in te plannen</li>
+        <li>Contact te onderhouden als je zorgprofessional bent en samenwerking verkent</li>
+      </ul>
+      <p>We gebruiken je gegevens niet voor marketingdoeleinden zonder dat je daar apart toestemming voor geeft.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">04</div>
+    <div>
+      <h2>Hoe je gegevens worden verwerkt</h2>
+      <p>Het contactformulier wordt technisch verwerkt door <strong>Formspree</strong>, een Amerikaanse dienst voor formulierverwerking. Dit betekent dat de gegevens die je invult, via servers buiten de Europese Unie kunnen worden verwerkt voordat ze bij ons terechtkomen. We werken alleen met formulierverwerkers die passende waarborgen bieden voor de bescherming van je gegevens.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">05</div>
+    <div>
+      <h2>Hoe lang we je gegevens bewaren</h2>
+      <p>We bewaren je gegevens niet langer dan nodig is om je aanvraag te behandelen. Word je klant, dan bewaren we de gegevens die nodig zijn voor de begeleiding van je traject; niet langer dan redelijkerwijs noodzakelijk.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">06</div>
+    <div>
+      <h2>Delen met derden</h2>
+      <p>We delen je gegevens uitsluitend met:</p>
+      <ul>
+        <li><strong>Formspree</strong>, als technische verwerker van het contactformulier</li>
+        <li><strong>Overheidsinstanties</strong>, uitsluitend wanneer we daartoe wettelijk verplicht zijn</li>
+      </ul>
+      <p>We verkopen je gegevens nooit aan derden.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">07</div>
+    <div>
+      <h2>Jouw rechten</h2>
+      <p>Onder de Algemene Verordening Gegevensbescherming (AVG) heb je het recht om:</p>
+      <ul>
+        <li>Inzage te vragen in de gegevens die we van je hebben</li>
+        <li>Correctie of verwijdering van je gegevens te vragen</li>
+        <li>Bezwaar te maken tegen het gebruik van je gegevens</li>
+        <li>Een klacht in te dienen bij de Autoriteit Persoonsgegevens</li>
+      </ul>
+      <p>Wil je een van deze rechten uitoefenen? Mail naar <a href="mailto:hello@unify.nl">hello@unify.nl</a>.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">08</div>
+    <div>
+      <h2>Wijzigingen</h2>
+      <p>We kunnen deze privacyverklaring aanpassen, bijvoorbeeld wanneer de website nieuwe functionaliteit krijgt. Deze tekst is aangepast in 2026.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-brand">UNIFY · Deep Water</span>
+  <span class="footer-copy">© 2026 Daniëlle · UNIFY</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessievoorwaarden — UNIFY · Deep Water</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:        #1a1916;
+    --sand:       #f4f0e8;
+    --warm-white: #faf9f6;
+    --deep:       #2c4a52;
+    --mid:        #4a7c8a;
+    --light:      #a8c5cc;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans:  'Instrument Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--warm-white); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap;
+    padding: 24px 56px;
+    background: rgba(250,249,246,0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1rem; font-weight: 300;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--deep); text-decoration: none;
+  }
+  .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .nav-link { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); opacity: 0.55; text-decoration: none; transition: opacity 0.3s; }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.is-active { opacity: 1; color: var(--deep); }
+  .nav-link.is-home {
+    opacity: 1;
+    border: 1px solid rgba(44,74,82,0.35);
+    padding: 8px 14px;
+  }
+  .nav-back {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); opacity: 0.5; text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: opacity 0.3s;
+  }
+  .nav-back:hover { opacity: 1; }
+  .nav-back::before { content: '←'; font-size: 1rem; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    min-height: 46vh;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 140px 0 60px;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(155deg, #1e3840 0%, #2c4a52 35%, #3d6a78 65%, #4a7c8a 100%);
+  }
+  .page-hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 35%, rgba(255,255,255,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(168,197,204,0.12) 0%, transparent 60%);
+  }
+  .page-hero-content { position: relative; z-index: 1; max-width: 760px; padding: 0 32px; }
+  .page-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--light); margin-bottom: 24px;
+  }
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 300; line-height: 1.05;
+    color: rgba(255,255,255,0.95);
+  }
+  .page-hero h1 em { font-style: italic; color: var(--light); }
+  .page-hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 300; font-style: italic;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6; margin-top: 24px; max-width: 520px;
+  }
+  .updated {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--light); opacity: 0.7; margin-top: 28px;
+  }
+  .page-home-link {
+    margin-top: 14px;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .page-home-link a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    padding-bottom: 2px;
+  }
+  .page-home-link a:hover {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.7);
+  }
+
+  /* ── CONTENT ── */
+  main {
+    width: 100%; max-width: none;
+    margin: -44px auto 0; padding: 0 32px 80px;
+    background: var(--warm-white);
+    border-radius: 28px 28px 0 0;
+    position: relative; z-index: 2;
+  }
+  .legal-intro,
+  .legal-block { max-width: 900px; margin-left: auto; margin-right: auto; }
+  .legal-intro { padding: 44px 0 8px; }
+  .legal-intro p {
+    font-size: 0.94rem; line-height: 1.85; color: var(--ink); opacity: 0.68;
+  }
+  .legal-block {
+    display: grid; grid-template-columns: 90px 1fr; gap: 32px;
+    padding: 44px 0; border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .legal-num {
+    font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
+    color: var(--light); line-height: 1;
+  }
+  .legal-block h2 {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+    color: var(--deep); margin-bottom: 16px;
+  }
+  .legal-block p, .legal-block li {
+    font-size: 0.92rem; line-height: 1.85; color: var(--ink); opacity: 0.68; margin-bottom: 14px;
+  }
+  .legal-block ul { padding-left: 20px; margin-bottom: 14px; }
+  a { color: var(--deep); }
+  .note-box {
+    background: var(--sand); border-left: 3px solid var(--light);
+    padding: 20px 24px; margin: 20px 0 0;
+    font-size: 0.84rem; line-height: 1.75; opacity: 0.9;
+  }
+  .note-box strong { color: var(--deep); }
+
+  footer {
+    padding: 48px 56px; background: var(--ink);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand {
+    font-family: var(--serif); font-size: 0.95rem; font-weight: 300;
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.6);
+  }
+  .footer-copy { font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 700px) {
+    nav { padding: 20px 24px; }
+    .page-hero { padding: 120px 0 48px; }
+    .page-hero-content { padding: 0 32px; }
+    main { margin-top: -44px; padding: 0 32px 80px; }
+    .legal-block { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
+    .legal-num { font-size: 1.6rem; }
+    footer { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">UNIFY · Deep Water</a>
+  <div class="nav-links">
+    <a class="nav-link is-home" href="/">Home</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <p class="page-eyebrow">UNIFY · Deep Water</p>
+    <h1>Sessie&shy;<em>voorwaarden.</em></h1>
+    <p class="page-hero-tagline">Wat kun je verwachten van een Deep Water sessie en wat wij van jou verwachten.</p>
+  </div>
+</section>
+
+<main>
+
+  <div class="legal-intro">
+    <p>Deze voorwaarden gelden voor een Deep Water-sessie bij UNIFY. Door een sessie aan te vragen en te bevestigen, ga je akkoord met onderstaande voorwaarden.</p>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">01</div>
+    <div>
+      <h2>Wat je afneemt</h2>
+      <p>Een Deep Water-sessie bestaat uit een intakegesprek, een begeleide sessie in water, en een nagesprek. De sessie is een somatische, lichaamsgerichte ervaring, geen medische behandeling en geen vervanging van therapie of psychiatrische zorg.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">02</div>
+    <div>
+      <h2>Aanmelding &amp; intake</h2>
+      <p>Elke sessie begint met een intakegesprek. Tijdens de intake deel je relevante (medische en psychische) informatie naar waarheid, waaronder eventuele lichamelijke klachten, zwangerschap, epilepsie, hart- en vaatproblemen, huidaandoeningen, en lopende behandeltrajecten. Op basis hiervan wordt bepaald of een sessie op dat moment geschikt is. UNIFY kan een aanvraag afwijzen of doorverwijzen wanneer een sessie niet passend of veilig lijkt.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">03</div>
+    <div>
+      <h2>Betaling</h2>
+      <p>Na de sessie ontvang je een factuur. Betaling dient te geschieden binnen 14 dagen na factuurdatum, tenzij anders overeengekomen.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">04</div>
+    <div>
+      <h2>Annuleren of verzetten</h2>
+      <ul>
+        <li>Meer dan 48 uur van tevoren: kosteloos annuleren of verzetten.</li>
+        <li>Tussen 24 en 48 uur van tevoren: 50% van de sessieprijs wordt in rekening gebracht.</li>
+        <li>Binnen 24 uur, of niet verschijnen zonder afmelding: de volledige sessieprijs wordt in rekening gebracht.</li>
+      </ul>
+      <p>Bij uitzonderlijke omstandigheden (bijvoorbeeld acute ziekte) wordt in overleg naar een passende oplossing gezocht.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">05</div>
+    <div>
+      <h2>Vertrouwelijkheid</h2>
+      <p>Wat je deelt tijdens de intake en het nagesprek wordt vertrouwelijk behandeld. Informatie wordt niet gedeeld met derden, tenzij je daar zelf toestemming voor geeft.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">06</div>
+    <div>
+      <h2>Aansprakelijkheid</h2>
+      <p>Deelname aan een Deep Water-sessie is op eigen risico. UNIFY spant zich in om de sessie zorgvuldig en veilig te begeleiden, onder meer via de intake en het bespreken van contra-indicaties. UNIFY is niet aansprakelijk voor schade die ontstaat doordat tijdens de intake onjuiste of onvolledige informatie is verstrekt.</p>
+      <p>Een Deep Water-sessie kan emotionele of lichamelijke reacties oproepen. Dit is onderdeel van het proces en geen reden tot aansprakelijkheid, tenzij sprake is van aantoonbare nalatigheid.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">07</div>
+    <div>
+      <h2>Klachten</h2>
+      <p>Heb je een klacht over een sessie? Neem contact op via <a href="mailto:hello@unify.nl">hello@unify.nl</a>. We reageren binnen 5 werkdagen.</p>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-num">08</div>
+    <div>
+      <h2>Toepasselijk recht</h2>
+      <p>Op deze voorwaarden is Nederlands recht van toepassing. Geschillen worden voorgelegd aan de bevoegde rechter in Nederland.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-brand">UNIFY · Deep Water</span>
+  <span class="footer-copy">© 2026 Daniëlle · UNIFY</span>
+</footer>
+
+</body>
+</html>
